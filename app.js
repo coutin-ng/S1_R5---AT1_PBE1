@@ -7,6 +7,11 @@ app.use(express.json());
 app.post("/mensagem", (req, res) => {
     try {
         const { usuarios: { nome, idade, timeFavorito } } = req.body;
+
+        if (isNaN(idade)) {
+            return res.status(400).json({message: `Erro: Número inválido`});
+        }
+        
         console.log(`Olá, ${nome}! Você tem ${idade} anos e torce para o ${timeFavorito}`);
         res.status(201).json({ message: `Olá, ${nome}! Você tem ${idade} anos e torce para o ${timeFavorito}`});
 
