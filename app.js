@@ -7,7 +7,12 @@ app.use(express.json());
 app.post("/soma", (req, res) => {
     try {
         const { numUm, numDois, numTres } = req.body;
-        console.log(`O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`);
+
+        if (isNaN(numUm) || isNaN(numDois) || isNaN(numTres)) {
+
+            return res.status(400).json({message: `Erro: Os números inseridos não são válidos!`});
+            
+        }
         res.status(201).json({ message: `O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`});
 
     } catch (error) {
