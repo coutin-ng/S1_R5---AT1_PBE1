@@ -4,11 +4,11 @@ const PORT = 8081;
 
 app.use(express.json());
 
-app.post("/mensagem", (req, res) => {
+app.post("/soma", (req, res) => {
     try {
-        const { usuarios: { nome, idade, timeFavorito } } = req.body;
-        console.log(`Olá, ${nome}! Você tem ${idade} anos e torce para o ${timeFavorito}`);
-        res.status(201).json({ message: `Olá, ${nome}! Você tem ${idade} anos e torce para o ${timeFavorito}`});
+        const { numUm, numDois, numTres } = req.body;
+        console.log(`O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`);
+        res.status(201).json({ message: `O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`});
 
     } catch (error) {
         console.error("Erro:", error);
