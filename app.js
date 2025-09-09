@@ -4,11 +4,15 @@ const PORT = 8081;
 
 app.use(express.json());
 
-app.post("/soma", (req, res) => {
+app.post("/login", (req, res) => {
     try {
-        const { numUm, numDois, numTres } = req.body;
-        console.log(`O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`);
-        res.status(201).json({ message: `O resultado da soma dos 3 números é: ${numUm + numDois + numTres}`});
+        const { usuario, senha } = req.body;
+
+        if (usuario != "Nicolas" || senha != 1234) {
+            return res.status(400).json({ message: `Usuário ou Senha incorretos. Login não efetuado!` });
+        }
+
+        return res.status(201).json({ message: `Usuário e senha corretos. Login efetuado com sucesso!` });
 
     } catch (error) {
         console.error("Erro:", error);
